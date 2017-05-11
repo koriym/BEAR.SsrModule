@@ -1,11 +1,12 @@
 <?php
-declare (strict_types = 1);
 
+declare(strict_types=1);
 /**
- * This file is part of the BEAR\ReactJsModule package
+ * This file is part of the BEAR.SsrModule package.
  *
  * @license http://opensource.org/licenses/MIT MIT
  */
+
 namespace BEAR\SsrModule;
 
 use BEAR\Resource\RenderInterface;
@@ -67,7 +68,7 @@ final class SeverSideRenderer implements RenderInterface
             throw new $exception(implode(',', $errorKeys));
         }
         $filterd = array_filter((array) $body, function ($key) use ($keys) {
-            return in_array($key, $keys);
+            return in_array($key, $keys, true);
         }, ARRAY_FILTER_USE_KEY);
 
         return $filterd;
