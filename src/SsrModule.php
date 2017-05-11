@@ -1,8 +1,8 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 /**
- * This file is part of the BEAR\ReactJsModule package
+ * This file is part of the BEAR.SsrModule package.
  *
  * @license http://opensource.org/licenses/MIT MIT
  */
@@ -20,21 +20,14 @@ class SsrModule extends AbstractModule
     /**
      * @var string
      */
-    private $name;
-
-    /**
-     * @var string
-     */
     private $bundleSrcBasePath;
 
     /**
      * @param string              $bundleSrcBasePath js application directory
-     * @param string              $name              application name in formot: {$name}.bundle.js
      * @param AbstractModule|null $module            Module
      */
-    public function __construct(string $bundleSrcBasePath, string $name = '', AbstractModule $module = null)
+    public function __construct(string $bundleSrcBasePath, AbstractModule $module = null)
     {
-        $this->name = $name;
         $this->bundleSrcBasePath = $bundleSrcBasePath;
         parent::__construct($module);
     }
@@ -44,6 +37,7 @@ class SsrModule extends AbstractModule
      */
     protected function configure()
     {
+        $this->bind(SsrFactoryInterface::class)->to(SsrFactory::class);
         $this->bind(BaracoaInterface::class)->toConstructor(Baracoa::class, 'bundleSrcBasePath=bundleSrcBasePath');
         $this->bind()->annotatedWith('bundleSrcBasePath')->toInstance($this->bundleSrcBasePath);
         $this->bind(ExceptionHandlerInterface::class)->to(ExceptionHandler::class);

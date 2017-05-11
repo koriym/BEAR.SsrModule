@@ -6,7 +6,6 @@ declare(strict_types=1);
  *
  * @license http://opensource.org/licenses/MIT MIT
  */
-
 namespace BEAR\SsrModule;
 
 use BEAR\Resource\RenderInterface;
@@ -15,7 +14,7 @@ use BEAR\SsrModule\Exception\MetaKeyNotExistsException;
 use BEAR\SsrModule\Exception\StatusKeyNotExistsException;
 use Koriym\Baracoa\BaracoaInterface;
 
-final class SeverSideRenderer implements RenderInterface
+final class Ssr implements RenderInterface
 {
     /**
      * @var BaracoaInterface
